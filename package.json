@@ -1,0 +1,29 @@
+{
+  "name": "xx-workflow",
+  "version": "1.0.0",
+  "description": "xx's web workflow",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Xx",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-preset-es2015": "",
+    "browser-sync": "^2.13.0",
+    "browserify": "",
+    "del": "",
+    "gulp": "",
+    "gulp-autoprefixer": "",
+    "gulp-babel": "",
+    "gulp-cache": "",
+    "gulp-concat": "",
+    "gulp-cssnano": "",
+    "gulp-imagemin": "",
+    "gulp-rename": "",
+    "gulp-sass": "",
+    "gulp-uglify": "",
+    "gulp-watch": "^4.3.8",
+    "vinyl-source-stream": ""
+  }
+}

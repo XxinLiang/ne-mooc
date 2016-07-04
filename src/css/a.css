@@ -1,0 +1,16 @@
+/*
+* @Author: zhangxinliang
+* @Date:   2016-07-04 16:10:45
+* @Last Modified by:   zhangxinliang
+* @Last Modified time: 2016-07-04 19:19:32
+*/
+.test-box {
+  background-color: #FFF; }
+  .test-box .test-btn {
+    display: block;
+    transition: all 1s; }
+
+body {
+  width: 100%;
+  height: 100%;
+  background-color: red; }
