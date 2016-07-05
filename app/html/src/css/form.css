@@ -1,0 +1,50 @@
+/*
+* @Author: zhangxinliang
+* @Date:   2016-07-05 18:38:01
+* @Last Modified by:   zhangxinliang
+* @Last Modified time: 2016-07-05 19:29:18
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #EEE;
+}
+.info-form {
+	padding: 30px 45px;
+	width: 382px;
+	background-color: #FFF;
+	margin: 200px auto 0;
+}
+.info-form ul {
+	list-style: none;
+}
+.info-form li {
+	margin-bottom: 30px;
+}
+.info-form li:last-child {
+	margin-bottom: 0;
+}
+.info-form label {
+	margin-right: 40px;
+}
+.info-form textarea {
+	resize: none;
+}
+.top {
+	vertical-align: top;
+}
+.save-btn {
+	margin-left: 80px;
+	padding: 10px 40px;
+	color: #FFF;
+	background-color: #d853b7;
+	cursor: pointer;
+	outline: none;
+	border: none;
+}
+.save-btn:hover {
+	background-color: #d050b0;
+}
