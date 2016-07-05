@@ -2,7 +2,7 @@
 * @Author: zhangxinliang
 * @Date:   2016-07-04 14:13:20
 * @Last Modified by:   zhangxinliang
-* @Last Modified time: 2016-07-05 11:37:14
+* @Last Modified time: 2016-07-05 13:59:13
 */
 
 'use strict';
@@ -102,7 +102,9 @@ projects.forEach(function (item) {
         browser.reload();
     });
     gulp.task(pname + ':img-watch', [pname + ':images'], browser.reload);
-    gulp.task(pname + ':html-watch', [pname + ':html'], browser.reload);
+    gulp.task(pname + ':html-watch', [pname + ':html'], function () {
+        browser.reload();
+    });
 
     //serve-start browsersync
     gulp.task(pname + ':serve', [], function () {
