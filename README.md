@@ -79,5 +79,6 @@ gulp demo:clean // 清除发布目录
 + 页面制作
     - html
         * [x] [畅销图书列表](http://xxthink.com/ne-mooc/app/html/dist/ul.html)
+        * [x] [邮寄信息表格](http://xxthink.com/ne-mooc/app/html/dist/table.html)
         * [ ] [个人信息表单](http://xxthink.com/ne-mooc/app/html/dist/form.html)
     - css
