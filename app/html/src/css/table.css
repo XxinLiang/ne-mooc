@@ -1,0 +1,49 @@
+/*
+* @Author: zhangxinliang
+* @Date:   2016-07-05 15:53:22
+* @Last Modified by:   zhangxinliang
+* @Last Modified time: 2016-07-05 16:46:07
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	color: #333;
+	background-color: #EEE;
+}
+.freight-table {
+	margin: 200px auto 0;
+	background-color: #FFF;
+	border: 1px solid #bbb;
+}
+.freight-table caption {
+	height: 36px;
+	line-height: 36px;
+	background-color: #FFF;
+	font-weight: bold;
+}
+.freight-table th,
+.freight-table td {
+	padding-left: 15px;
+	height: 40px;
+	border: 1px solid #bbb;
+}
+.freight-table th {
+	background-color: #f7f7f7;
+	font-weight: bold;
+	text-align: left;
+}
+.w60 {
+	width: 60px;
+	min-width: 60px;
+}
+.w155 {
+	width: 155px;
+	min-width: 155px;
+}
+.w135 {
+	width: 135px;
+	min-width: 135px;
+}
