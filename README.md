@@ -4,10 +4,10 @@
 
 ## 目录
 
-1.[安装](#install)
-2.[项目目录规范](#directory)
-3.[如何使用](#howtouse)
-4.[我的源码](#mycode)
++ 1.[安装](#install)
++ 2.[项目目录规范](#directory)
++ 3.[如何使用](#howtouse)
++ 4.[我的源码](#mycode)
 
 <a name="install"></a>
 ## 1. 安装
@@ -20,7 +20,6 @@
 
 ```
 cnpm install
-
 ```
 
 <a name="directory"></a>
