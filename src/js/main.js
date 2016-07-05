@@ -1,1 +1,0 @@
-"use strict";function _interopRequireDefault(e){return e&&e.__esModule?e:{"default":e}}var _module2=require("module"),_module3=_interopRequireDefault(_module2),a=function(){return new Promise(function(e,u){e("a")})};a.num=_module3["default"].a;

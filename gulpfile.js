@@ -2,7 +2,7 @@
 * @Author: zhangxinliang
 * @Date:   2016-07-04 14:13:20
 * @Last Modified by:   zhangxinliang
-* @Last Modified time: 2016-07-04 19:33:20
+* @Last Modified time: 2016-07-05 11:37:14
 */
 
 'use strict';
@@ -11,7 +11,6 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     cssnano = require('gulp-cssnano'),
-    uglify = require('gulp-uglify'),
     imagemin = require('gulp-imagemin'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
@@ -20,94 +19,105 @@ var gulp = require('gulp'),
     babel = require('gulp-babel'),
     browserify = require('browserify'),
 	source = require('vinyl-source-stream'),
-    browserSync = require('browser-sync').create(),
-    reload = browserSync.reload;
+    browserSync = require('browser-sync'),
+    plumber = require('gulp-plumber');
 
-gulp.task('styles', function () {
-	return gulp.src('src/sass/**/*.scss')
-		.pipe(sass({ style: 'expanded' }))
-		.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-		.pipe(gulp.dest('src/css'))
-		.pipe(cssnano())
-    	.pipe(rename(function (path) {
-    		path.basename += '.min';
-    	}))
-    	.pipe(gulp.dest('dist/css'));
-});
+var projects = require('./project.config.js');
 
-//es6 to es5
-gulp.task('scripts', function () {
-	return gulp.src('src/scripts/**/*.js')
-		.pipe(babel({
-			presets: ['es2015']
-		}))
-		.pipe(uglify())
-		.pipe(gulp.dest('src/js'));
-});
- 
-// browserify
-gulp.task("browserify", function () {
-    var b = browserify({
-        entries: "src/app.js"
+projects.forEach(function (item) {
+    var pname = item.projectdir,
+        port = item.port,
+        version = item.version,
+        basedir = './app/' + pname,
+        browser = browserSync.create(),
+        reload = browser.reload;
+
+    //styles-scss to css
+    gulp.task(pname + ':styles', function () {
+        return gulp.src(basedir + '/src/sass/**/*.scss')
+            .pipe(plumber())
+            .pipe(sass({ style: 'expanded' }))
+            .pipe(autoprefixer('last 4 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+            .pipe(gulp.dest(basedir + '/src/css'));
     });
 
-    return b.bundle()
-        .pipe(source("bundle.js"))
-        .pipe(gulp.dest("dist/js"));
-});
-
-gulp.task('images', function() {
-  	return gulp.src('src/images/**/*')
-    	.pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-    	.pipe(gulp.dest('src/img'))
-    	.pipe(gulp.dest('dist/img'));
-});
-
-gulp.task('html', function () {
-	return gulp.src('src/html/**/*.html')
-		.pipe(gulp.dest('dist/'));
-});
-
-// Clean
-gulp.task('clean', function(cb) {
-    del(['dist/assets/css', 'dist/assets/js', 'dist/assets/img'], cb)
-});
-
-// Default task
-gulp.task('default', ['clean'], function() {
-    gulp.start('styles', 'scripts', 'images');
-});
- 
-// 监视文件变化，自动执行任务
-// gulp.task('watch', function(){
-//   	gulp.watch('src/sass/**/*.scss', ['styles']);
-//   	gulp.watch('src/scripts/**/*.js', ['scripts', 'browserify']);
-//  	gulp.watch('src/images/**/*', ['images']);
-//   	gulp.watch('src/html/**/*.html', ['html']);
-// });
-
-gulp.task('start', ['styles', 'scripts', 'images', 'browserify', 'html', 'serve']);
-
-gulp.task('watch', ['styles', 'scripts', 'browserify', 'images', 'html'], browserSync.reload);
-
-gulp.task('js-watch', ['scripts', 'browserify'], browserSync.reload);
-gulp.task('css-watch', ['styles'], browserSync.reload);
-gulp.task('img-watch', ['images'], browserSync.reload);
-gulp.task('html-watch', ['html'], browserSync.reload);
-
-// 使用默认任务启动Browsersync，监听JS文件
-gulp.task('serve', [], function () {
-
-    // 从这个项目的根目录启动服务器
-    browserSync.init({
-        server: {
-            baseDir: "./dist/"
-        },
-        port: 8080
+    //mincss-css to min.css
+    gulp.task(pname + ':mincss', function () {
+        return gulp.src(basedir + '/src/css/**/*.css')
+            .pipe(plumber())
+            .pipe(cssnano())
+            .pipe(rename(function (path) {
+                path.basename += '.min';
+            }))
+            .pipe(gulp.dest(basedir + '/dist/css'));
     });
 
-    gulp.watch('src/sass/**/*.scss', ['css-watch']);
-    gulp.watch('src/scripts/**/*.js', ['js-watch']);
-    gulp.watch('src/images/**/*', ['img-watch']);
-    gulp.watch('src/html/**/*.html', ['html-watch']);
+    //scripts-es6 to es5
+    gulp.task(pname + ':scripts', function () {
+        return gulp.src(basedir + '/src/scripts/**/*.js')
+            .pipe(plumber())
+            .pipe(babel({
+                presets: ['es2015']
+            }))
+            .pipe(gulp.dest(basedir + '/src/js'));
+    });
+     
+    // browserify-js module to bundle.js
+    gulp.task(pname + ":browserify", function () {
+        var b = browserify({
+            entries: basedir + '/src/scripts/app.js'
+        });
+
+        return b.bundle()
+            .pipe(source("bundle.js"))
+            .pipe(gulp.dest(basedir + "/dist/js"));
+    });
+
+    //images-images to min img
+    gulp.task(pname + ':images', function() {
+        return gulp.src(basedir + '/src/images/**/*')
+            .pipe(plumber())
+            .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+            .pipe(gulp.dest(basedir + '/dist/img'));
+    });
+
+    //html-src html to html
+    gulp.task(pname + ':html', function () {
+        return gulp.src(basedir + '/src/html/**/*.html')
+            .pipe(plumber())
+            .pipe(gulp.dest(basedir + '/dist/'));
+    });
+
+    // clean-delete dist
+    gulp.task(pname + ':clean', function(cb) {
+        del([basedir + '/dist/'], cb)
+    });
+
+
+    gulp.task(pname + ':dev', [pname + ':styles', pname + ':mincss', pname + ':scripts', pname + ':images', pname + ':browserify', pname + ':html', pname + ':serve']);
+
+    gulp.task(pname + ':js-watch', [pname + ':scripts', pname + ':browserify'], browser.reload);
+    gulp.task(pname + ':sass-watch', [pname + ':styles']);
+    gulp.task(pname + ':css-watch', [pname + ':mincss'], function () {
+        browser.reload();
+    });
+    gulp.task(pname + ':img-watch', [pname + ':images'], browser.reload);
+    gulp.task(pname + ':html-watch', [pname + ':html'], browser.reload);
+
+    //serve-start browsersync
+    gulp.task(pname + ':serve', [], function () {
+        browser.init({
+            server: {
+                baseDir: basedir + '/dist/'
+            },
+            port: port
+        });
+
+        gulp.watch(basedir + '/src/sass/**/*.scss', [pname + ':sass-watch']);
+        gulp.watch(basedir + '/src/css/**/*.css', [pname + ':css-watch']);
+        gulp.watch(basedir + '/src/scripts/**/*.js', [pname + ':js-watch']);
+        gulp.watch(basedir + '/src/images/**/*', [pname + ':img-watch']);
+        gulp.watch(basedir + '/src/html/**/*.html', [pname + ':html-watch']);
+    });
 });
+
