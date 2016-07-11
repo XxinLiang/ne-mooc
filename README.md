@@ -81,4 +81,7 @@ gulp demo:clean // 清除发布目录
         * [x] [畅销图书列表](http://xxthink.com/ne-mooc/app/html/dist/ul.html)
         * [x] [邮寄信息表格](http://xxthink.com/ne-mooc/app/html/dist/table.html)
         * [x] [个人信息表单](http://xxthink.com/ne-mooc/app/html/dist/form.html)
+        * [x] [弹窗样式](http://xxthink.com/ne-mooc/app/html/dist/layer.html)
+        * [x] [侧边自适应布局](http://xxthink.com/ne-mooc/app/html/dist/aside.html)
+        * [x] [纯CSStab实现](http://xxthink.com/ne-mooc/app/html/dist/tab.html)
     - css
