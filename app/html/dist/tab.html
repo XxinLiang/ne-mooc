@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>纯css实现tab切换</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		main {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 574px;
+			border: 1px solid #999;
+			box-sizing: border-box;
+			background-color: #fff;
+			font-size: 14px;
+			font-family: "Microsoft YaHei";
+		}
+		.inputs {
+			/*display: none;*/
+		}
+		input {
+			display: none;
+		}
+		.labels:before,
+		.labels:after {
+			content: "";
+			display: table;
+		}
+		.labels:after {
+			clear: both;
+		}
+		.labels  label{
+			display: block;
+			float: left;
+			width: 190px;
+			height: 34px;
+			line-height: 34px;
+			text-align: center;
+			border-left: 1px solid #cecece;
+			border-bottom: 1px solid #cecece;
+			background-color: #f1f1f1;
+		}
+		.labels label:first-child {
+			border-left: none;
+		}
+		.sections section{
+			display: none;
+			padding: 20px;
+		}
+		#agent1:checked ~ .labels .label1,
+		#agent2:checked ~ .labels .label2,
+		#agent3:checked ~ .labels .label3 {
+			border-bottom: none;
+			background-color: #fff;
+		}
+		#agent1:checked ~ .sections .section1,
+		#agent2:checked ~ .sections .section2,
+		#agent3:checked ~ .sections .section3 {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<main>
+		<input type="radio" id="agent1" name="agent" checked>
+		<input type="radio" id="agent2" name="agent">
+		<input type="radio" id="agent3" name="agent">
+		<div class="labels">
+			<label for="agent1" class="label1">课程</label>
+			<label for="agent2" class="label2">学习计划</label>
+			<label for="agent3" class="label3">技能图谱</label>			
+		</div>
+		<div class="sections">
+			<section class="section1">课程</section>
+			<section class="section2">学习计划</section>
+			<section class="section3">技能图谱</section>
+		</div>
+	</main>
+</body>
+</html>
