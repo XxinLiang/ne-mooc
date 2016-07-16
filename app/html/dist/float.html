@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>浮动布局</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.parent {
+			width: 810px;
+			margin: 50px auto 0;
+		}
+		.parent:before,
+		.parent:after {
+			content: "";
+			display: table;
+		}
+		.parent:after {
+			clear: both;
+		}
+		.side {
+			float: left;
+			width: 200px;
+			height: 500px;
+			margin-right: 10px;
+			background-color: #ccc;
+		}
+		.main {
+			float: right;
+			width: 600px;
+			height: 500px;
+			background-color: #bbb;
+		}
+	</style>
+</head>
+<body>
+	<div class="parent">
+		<div class="side"></div>
+		<div class="main"></div>
+	</div>
+</body>
+</html>
