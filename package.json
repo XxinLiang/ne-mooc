@@ -24,6 +24,7 @@
     "gulp-rename": "",
     "gulp-sass": "",
     "gulp-watch": "^4.3.8",
+    "node-sass": "^3.8.0",
     "vinyl-source-stream": ""
   }
 }
