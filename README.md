@@ -85,3 +85,6 @@ gulp demo:clean // 清除发布目录
         * [x] [侧边自适应布局](http://xxthink.com/ne-mooc/app/html/dist/aside.html)
         * [x] [纯CSStab实现](http://xxthink.com/ne-mooc/app/html/dist/tab.html)
     - css
+        * [x] [float布局](http://xxthink.com/ne-mooc/app/html/dist/float.html)
+        * [x] [新闻标题](http://xxthink.com/ne-mooc/app/html/dist/news.html)
+        * [x] [轮播布局](http://xxthink.com/ne-mooc/app/html/dist/slide.html)
