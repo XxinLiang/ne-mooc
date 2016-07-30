@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>下拉选择</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			font-family: "SimHei";
+			font-size: 12px;
+			padding-top: 50px;
+			padding-left: 50px;
+		}
+		.select-btn {
+			display: block;
+			width: 50px;
+			height: 28px;
+			line-height: 28px;
+			text-align: center;
+			background-color: #eee;
+			border: 1px solid #ddd;
+			cursor: pointer;
+		}
+		.select-agent {
+			display: none;
+		}
+		.close-btn {
+			display: none;
+		}
+		.select-box {
+			display: inline-block;
+			margin-top: 1px;
+			border: 1px solid #ddd;
+			list-style: none;
+			display: none;
+		}
+		.select-box li {
+			height: 30px;
+			line-height: 30px;
+			padding: 0 10px;
+			border-bottom: 1px solid #ddd;
+			cursor: pointer;
+		}
+		.select-box li:last-child {
+			border: none;
+		}
+		.select-box li:hover {
+			background-color: #ddd;
+		}
+		#select-open:checked ~ .select-box {
+			display: inline-block;
+		}
+		#select-open:checked ~ .open-btn {
+			display: none;
+		}
+		#select-open:checked ~ .close-btn {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<input class="select-agent" id="select-open" type="radio" name="agent">
+	<input class="select-agent" id="select-close" type="radio" name="agent">
+	<label class="select-btn open-btn" for="select-open">开启</label>
+	<label class="select-btn close-btn" for="select-close">关闭</label>
+	<ul class="select-box">
+		<li>下拉菜单项</li>
+		<li>下拉菜单项</li>
+		<li>下拉菜单项</li>
+		<li>下拉菜单项</li>
+	</ul>
+</body>
+</html>

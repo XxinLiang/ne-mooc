@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		html,
+		body {
+			width: 100%;
+			height: 100%;
+		}
+		body {
+			background-color: #eee;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.login-form {
+			padding: 10px;
+			background-color: #fff;
+		}
+		.login-form ul {
+			list-style: none;
+		}
+		.login-form ul li {
+			margin-bottom: 15px;
+		}
+		.login-form ul li:last-child {
+			margin-bottom: 0;
+		}
+		.login-title {
+			font-family: "Microsoft YaHei";
+			font-size: 14px;
+			line-height: 16px;
+			font-weight: bold;
+		}
+		.login-form label {
+			display: inline-block;
+			width: 60px;
+			font-family: "SimSun";
+			font-size: 12px;
+		}
+		.login-user,
+		.login-pwd {
+			box-sizing: border-box;
+			width: 200px;
+			height: 20px;
+			border: 1px solid #ddd;
+		}
+		.login-submit {
+			margin-left: 60px;
+			width: 40px;
+			height: 20px;
+			font-family: "SimSun";
+			font-size: 12px;
+			line-height: 20px;
+			text-align: center;
+			background-color: #3385ff;
+			color: #fff;
+			border: none;
+			outline: none;
+		} 
+	</style>
+</head>
+<body>
+	<form class="login-form" action="/login" method="post">
+		<ul>
+			<li><h3 class="login-title">登录网易通行证</h3></li>
+			<li><label for="username">用户名：</label><input id="username"  class="login-user" type="text"></li>
+			<li><label for="password">密码：</label><input id="password" class="login-pwd" type="password"></li>
+			<li><input class="login-submit" type="submit"></li>
+		</ul>
+	</form>
+</body>
+</html>

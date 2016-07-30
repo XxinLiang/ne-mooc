@@ -1,0 +1,56 @@
+/*
+* @Author: Xx
+* @Date:   2016-07-30 14:17:03
+* @Last Modified by:   Xx
+* @Last Modified time: 2016-07-30 15:14:52
+*/
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background-color: #ccc;
+}
+.fix:before,
+.fix:after {
+	content: "";
+	display: table;
+}
+.fix:after {
+	clear: both;
+}
+
+.news-item {
+	background-color: #fff;
+}
+.news-img-box {
+	float: left;
+	width: 100px;
+	height: 100px;
+	margin-right: 15px;
+}
+.news-img-box img {
+	width: 100%;
+	height: 100%;
+}
+.news-info-box {
+	display: -webkit-box;
+	font-family: "SimSun";
+	line-height: 25px;
+	-webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+    overflow: hidden;
+}
+.news-info-box h3 {
+	font-size: 16px;
+	color: #000;
+	font-weight: bold;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+}
+.news-info-box p {
+	font-size: 14px;
+	color: #666;
+}

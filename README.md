@@ -88,3 +88,7 @@ gulp demo:clean // 清除发布目录
         * [x] [float布局](http://xxthink.com/ne-mooc/app/html/dist/float.html)
         * [x] [新闻标题](http://xxthink.com/ne-mooc/app/html/dist/news.html)
         * [x] [轮播布局](http://xxthink.com/ne-mooc/app/html/dist/slide.html)
+        * [x] [考试-新闻](http://xxthink.com/ne-mooc/app/html/dist/index.html)
+        * [x] [考试-登录](http://xxthink.com/ne-mooc/app/html/dist/login.html)
+        * [x] [考试-表格](http://xxthink.com/ne-mooc/app/html/dist/photos.html)
+        * [x] [考试-下拉列表](http://xxthink.com/ne-mooc/app/html/dist/select.html)
