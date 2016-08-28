@@ -1,8 +1,8 @@
 /*
 * @Author: zhangxinliang
 * @Date:   2016-07-04 14:13:20
-* @Last Modified by:   zhangxinliang
-* @Last Modified time: 2016-07-05 13:59:13
+* @Last Modified by:   Xx
+* @Last Modified time: 2016-08-28 19:30:54
 */
 
 'use strict';
@@ -16,6 +16,9 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     cache = require('gulp-cache'),
     del = require('del'),
+    rollup = require('rollup').rollup,
+    // rbabel = require('rollup-plugin-babel'),
+    uglify = require('rollup-plugin-uglify'),
     babel = require('gulp-babel'),
     browserify = require('browserify'),
 	source = require('vinyl-source-stream'),
@@ -61,7 +64,38 @@ projects.forEach(function (item) {
             }))
             .pipe(gulp.dest(basedir + '/src/js'));
     });
-     
+    
+    gulp.task(pname + ':rollup', function () {
+        return rollup({
+            entry: basedir + '/src/scripts/app.js',
+            plugins: [
+                babel({
+                    exclude: 'node_modules/**',
+                    presets: [
+                        [
+                            'es2015',
+                            {
+                                'modules': false
+                            }
+                        ]
+                    ],
+                }),
+                // uglify()
+            ]
+        }).then(function(bundle) {
+            bundle.write({
+                format: 'es6',
+                globals: {
+                    moment: 'moment'
+                },
+                dest: basedir + "/dist/js/index.js"
+            });
+        }).catch(function (err) {
+            console.log(err);
+        });
+    });
+
+
     // browserify-js module to bundle.js
     gulp.task(pname + ":browserify", function () {
         var b = browserify({
