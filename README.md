@@ -93,4 +93,6 @@ gulp demo:clean // 清除发布目录
         * [x] [考试-表格](http://xxthink.com/ne-mooc/app/html/dist/photos.html)
         * [x] [考试-下拉列表](http://xxthink.com/ne-mooc/app/html/dist/select.html)
     -js
-        * [x] [封装基础函数](https://github.com/XxinLiang/ne-mooc/blob/master/app/html/src/js/js-base.js) 
+        * [x] [封装基础函数](https://github.com/XxinLiang/ne-mooc/blob/master/app/html/src/js/js-base.js)
+    -demo
+        * [x] [考试-下拉列表](http://xxthink.com/ne-mooc/app/html/dist/date.html)
