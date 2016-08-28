@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-ch">
+<head>
+	<meta charset="UTF-8">
+	<title>日期选择器</title>
+</head>
+<body>
+	<select name="year" id="year">
+        <option value="0">--</option>
+        <option value="1999">1999</option>
+        <option value="2000">2000</option>
+        <option value="2001">2001</option>
+    </select>年
+    <select name="month" id="month">
+        <option value="0">--</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+    </select>月
+    <select name="date" id="date">
+        <option value="0">--</option>
+    </select>日
+
+    <script>
+      //兼容至IE5
+    var year = document.getElementById('year'),
+        month = document.getElementById('month'),
+        date = document.getElementById('date')
+    		
+    function addEvent (obj, type, fn){
+        return obj.addEventListener ? obj.addEventListener(type, fn) : obj.attachEvent('on' + type, fn)
+    }
+        
+    var dateHandle = {
+        year: 0,
+        month: 0,
+        init: function () {
+            this.initSelect(month)
+            this.bind()
+        },
+        bind: function () {
+            var self = this
+            addEvent(year, 'change', function (event) {
+                var e = event || window.event
+                self.year = e.target ? e.target.value : e.srcElement.options.value
+                self.initSelect(month)
+                self.initSelect(date)
+                if (self.year !== '0') 
+                    self.setMouth(month)
+            })
+            addEvent(month, 'change', function (event) {
+                var e = event || window.event
+                self.month = e.target ? e.target.value : e.srcElement.options.value
+                self.initSelect(date)
+                if (self.month !== '0') 
+                    self.setDay(date, self.getDays())
+            })
+        },
+        initSelect: function (el) {
+            el.innerHTML = ''
+            el.add(new Option('--', 0))
+        },
+        setMouth: function (el) {
+            for (var i = 1; i < 13; i ++) {
+                el.add(new Option(i, i))
+            }
+        },
+        getDays: function () {
+            return new Date(this.year, this.month, 0).getDate()
+        },
+        setDay: function (el, days) {
+            for (var i = 1; i < days + 1; i ++) {
+                el.add(new Option(i, i))
+            }
+        }
+    }
+    dateHandle.init();
+    </script>
+</body>
+</html>
