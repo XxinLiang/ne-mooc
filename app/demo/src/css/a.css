@@ -19,3 +19,12 @@ div {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex; }
+
+.test {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #ccc; }

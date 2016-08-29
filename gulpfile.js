@@ -17,13 +17,12 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     del = require('del'),
     rollup = require('rollup').rollup,
-    // rbabel = require('rollup-plugin-babel'),
-    uglify = require('rollup-plugin-uglify'),
     babel = require('gulp-babel'),
-    browserify = require('browserify'),
+    uglify = require('gulp-uglify'),
 	source = require('vinyl-source-stream'),
     browserSync = require('browser-sync'),
-    plumber = require('gulp-plumber');
+    plumber = require('gulp-plumber'),
+    notify = require('gulp-notify');
 
 var projects = require('./project.config.js');
 
@@ -31,40 +30,44 @@ projects.forEach(function (item) {
     var pname = item.projectdir,
         port = item.port,
         version = item.version,
-        basedir = './app/' + pname,
+        basedir = 'app/' + pname,
         browser = browserSync.create(),
         reload = browser.reload;
 
     //styles-scss to css
     gulp.task(pname + ':styles', function () {
-        return gulp.src(basedir + '/src/sass/**/*.scss')
-            .pipe(plumber())
+        return gulp.src(basedir + '/src/sass/*.scss')
             .pipe(sass({ style: 'expanded' }))
+            .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
             .pipe(autoprefixer('last 4 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+            .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
             .pipe(gulp.dest(basedir + '/src/css'));
     });
 
     //mincss-css to min.css
     gulp.task(pname + ':mincss', function () {
         return gulp.src(basedir + '/src/css/**/*.css')
-            .pipe(plumber())
             .pipe(cssnano())
+            .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
             .pipe(rename(function (path) {
                 path.basename += '.min';
             }))
+            .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
             .pipe(gulp.dest(basedir + '/dist/css'));
     });
 
     //scripts-es6 to es5
-    gulp.task(pname + ':scripts', function () {
-        return gulp.src(basedir + '/src/scripts/**/*.js')
-            .pipe(plumber())
+    gulp.task(pname + ':babel', function () {
+        return gulp.src(basedir + '/src/js/bundle.js')
             .pipe(babel({
                 presets: ['es2015']
             }))
-            .pipe(gulp.dest(basedir + '/src/js'));
+            .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+            .pipe(uglify())
+            .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
+            .pipe(gulp.dest(basedir + '/dist/js/'));
     });
-    
+
     gulp.task(pname + ':rollup', function () {
         return rollup({
             entry: basedir + '/src/scripts/app.js',
@@ -73,14 +76,13 @@ projects.forEach(function (item) {
                     exclude: 'node_modules/**',
                     presets: [
                         [
-                            'es2015',
+                            'es2016',
                             {
                                 'modules': false
                             }
                         ]
                     ],
                 }),
-                // uglify()
             ]
         }).then(function(bundle) {
             bundle.write({
@@ -88,37 +90,24 @@ projects.forEach(function (item) {
                 globals: {
                     moment: 'moment'
                 },
-                dest: basedir + "/dist/js/index.js"
+                dest: basedir + "/src/js/bundle.js"
             });
         }).catch(function (err) {
             console.log(err);
         });
     });
 
-
-    // browserify-js module to bundle.js
-    gulp.task(pname + ":browserify", function () {
-        var b = browserify({
-            entries: basedir + '/src/scripts/app.js'
-        });
-
-        return b.bundle()
-            .pipe(source("bundle.js"))
-            .pipe(gulp.dest(basedir + "/dist/js"));
-    });
-
     //images-images to min img
     gulp.task(pname + ':images', function() {
         return gulp.src(basedir + '/src/images/**/*')
-            .pipe(plumber())
             .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+            .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
             .pipe(gulp.dest(basedir + '/dist/img'));
     });
 
     //html-src html to html
     gulp.task(pname + ':html', function () {
         return gulp.src(basedir + '/src/html/**/*.html')
-            .pipe(plumber())
             .pipe(gulp.dest(basedir + '/dist/'));
     });
 
@@ -128,9 +117,9 @@ projects.forEach(function (item) {
     });
 
 
-    gulp.task(pname + ':dev', [pname + ':styles', pname + ':mincss', pname + ':scripts', pname + ':images', pname + ':browserify', pname + ':html', pname + ':serve']);
+    gulp.task(pname + ':dev', [pname + ':styles', pname + ':mincss', pname + ':rollup', pname + ':babel', pname + ':images', pname + ':html', pname + ':serve']);
 
-    gulp.task(pname + ':js-watch', [pname + ':scripts', pname + ':browserify'], browser.reload);
+    gulp.task(pname + ':js-watch', [pname + ':rollup', pname + ':babel'], browser.reload);
     gulp.task(pname + ':sass-watch', [pname + ':styles']);
     gulp.task(pname + ':css-watch', [pname + ':mincss'], function () {
         browser.reload();
@@ -156,4 +145,3 @@ projects.forEach(function (item) {
         gulp.watch(basedir + '/src/html/**/*.html', [pname + ':html-watch']);
     });
 });
-
