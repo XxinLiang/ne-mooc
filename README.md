@@ -1,6 +1,6 @@
 # ne-mooc
 
-这是一个我用来写网易云课堂前端微专业各种demo和作业的仓库。使用gulp搭建了一个简单的自动化工作流，目前包含编译sass与es6、css压缩、js压缩合并、浏览器自动刷新等功能。
+这是一个我用来写网易云课堂前端微专业各种demo和作业的仓库。使用gulp搭建了一个简单的自动化工作流，使用了下一代的打包工具rollup，目前包含编译sass与es6、css压缩、js压缩合并、浏览器自动刷新等功能。
 
 ## 目录
 
@@ -62,16 +62,14 @@ cnpm install
 gulp demo:styles // 编译sass
 gulp demo:mincss // 压缩css
 gulp demo:images // 压缩图片
-gulp demo:scripts // 编译JS
-gulp demo:browserify // 压缩并合并JS
+gulp demo:rollup // 打包JS
+gulp demo:babel // 编译并压缩JS
 gulp demo:html // 发布html
 
-gulp demo:dev // 开启全自动化
+gulp demo:dev // 开启开发环境
 
 gulp demo:clean // 清除发布目录
 ```
-
-* 目前存在问题：代码编写错误会中断流程，使用了```gulp-plumber```仍未能解决。
 
 <a name="mycode"></a>
 ## 我的源码
@@ -94,5 +92,5 @@ gulp demo:clean // 清除发布目录
         * [x] [考试-下拉列表](http://xxthink.com/ne-mooc/app/html/dist/select.html)
     - js
         * [x] [封装基础函数](https://github.com/XxinLiang/ne-mooc/blob/master/app/html/src/js/js-base.js)
-    - demo
-        * [x] [考试-下拉列表](http://xxthink.com/ne-mooc/app/html/dist/date.html)
+    - dom
+        * [x] [考试-日期级联](http://xxthink.com/ne-mooc/app/html/dist/date.html)

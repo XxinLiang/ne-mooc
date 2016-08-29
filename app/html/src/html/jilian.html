@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <title>级联</title>
+</head>
+ 
+<body>
+    <select class="select1"></select>
+    <select class="select2"></select>
+    <select class="select3"></select>
+</body>
+ 
+</html>
+<script>
+let data = [
+    {
+        text: '1',
+        value: '1',
+        list: [
+            {
+                text: '1.1',
+                value: '1.1',
+                list: [{
+                    text: '1.1.1',
+                    value: '1.1.1',
+                    list: []
+                }]
+            }, 
+            {
+                text: '1.2',
+                value: '1.2',
+                list: [{
+                    text: '1.2.1',
+                    value: '1.2.1',
+                    list: []
+                }]
+            },
+             {
+                text: '1.3',
+                value: '1.3',
+                list: [{
+                    text: '1.3.1',
+                    value: '1.3.1',
+                    list: []
+                }]
+            }
+        ]
+    }, 
+    {
+        text: '2',
+        value: '2',
+        list: [{
+            text: '2.1',
+            value: '2.1',
+            list: [{
+                text: '2.1.1',
+                value: '2.1.1',
+                list: [{
+                    text: '2.1.1.1',
+                    value: '2.1.1.1',
+                    list: []
+                }]
+            }]
+        }]
+    }
+]
+ 
+function cascade(selectList, data) {
+    selectList.forEach((item, index) => {
+        render(item, getInitData(index))
+        item.addEventListener('change', (e) => {
+            let values = e.target.value.split('.'),
+                len = values.length,
+                tempList = [],
+                tempData = data
+            if (len >= selectList.length) return
+            for (let i = len; i < selectList.length; i ++) {
+                tempList.push(selectList[i]);
+            }
+            for (let i = 0; i < len; i ++) {
+                tempData = tempData[parseInt(values[i]) - 1].list
+            }
+            cascade(tempList, tempData)
+        })
+    })
+    function getInitData (index) {
+        let result = data
+        for (let i = 0; i < index; i ++) {
+            result = result[0].list
+        }
+        return result
+    }
+    function render (select, list) {
+        select.innerHTML = ''
+        list.forEach((data) => {
+            select.add(new Option(data.text, data.value))
+        })
+    }
+}
+
+cascade(document.querySelectorAll('select[class^=select]'), data);
+
+</script>

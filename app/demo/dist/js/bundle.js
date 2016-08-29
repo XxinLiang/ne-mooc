@@ -1,12 +1,1 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-/*
-* @Author: zhangxinliang
-* @Date:   2016-07-04 16:14:36
-* @Last Modified by:   zhangxinliang
-* @Last Modified time: 2016-07-05 11:33:05
-*/
-
-'use strict';
-
-document.body.style.backgroundColor = a;
-},{}]},{},[1]);
+"use strict";function _classCallCheck(s,n){if(!(s instanceof n))throw new TypeError("Cannot call a class as a function")}var add=function(s){return s++};console.log(add(1));var Test=function s(n){_classCallCheck(this,s),this.str=n};console.log(new Test("srt"));
