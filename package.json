@@ -18,14 +18,17 @@
     "gulp-babel": "",
     "gulp-cache": "",
     "gulp-concat": "",
+    "gulp-css-spriter": "^0.3.3",
     "gulp-cssnano": "",
     "gulp-imagemin": "",
+    "gulp-minify-css": "^1.2.4",
     "gulp-plumber": "^1.1.0",
     "gulp-rename": "",
     "gulp-sass": "",
     "gulp-watch": "^4.3.8",
     "node-sass": "^3.8.0",
     "rollup-plugin-babel": "^2.6.1",
+    "through2": "^2.0.1",
     "vinyl-source-stream": ""
   },
   "dependencies": {

@@ -1,8 +1,8 @@
 /*
 * @Author: zhangxinliang
 * @Date:   2016-07-04 14:13:20
-* @Last Modified by:   Xx
-* @Last Modified time: 2016-08-28 19:30:54
+* @Last Modified by:   zhangxinliang
+* @Last Modified time: 2016-08-30 15:29:34
 */
 
 'use strict';
@@ -11,6 +11,7 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     cssnano = require('gulp-cssnano'),
+    minify = require('gulp-minify-css'),
     imagemin = require('gulp-imagemin'),
     rename = require('gulp-rename'),
     concat = require('gulp-concat'),
@@ -22,7 +23,9 @@ var gulp = require('gulp'),
 	source = require('vinyl-source-stream'),
     browserSync = require('browser-sync'),
     plumber = require('gulp-plumber'),
-    notify = require('gulp-notify');
+    notify = require('gulp-notify'),
+    spriter = require('gulp-css-spriter'),
+    through = require('through2')
 
 var projects = require('./project.config.js');
 
@@ -48,10 +51,6 @@ projects.forEach(function (item) {
     gulp.task(pname + ':mincss', function () {
         return gulp.src(basedir + '/src/css/**/*.css')
             .pipe(cssnano())
-            .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-            .pipe(rename(function (path) {
-                path.basename += '.min';
-            }))
             .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
             .pipe(gulp.dest(basedir + '/dist/css'));
     });
@@ -116,10 +115,38 @@ projects.forEach(function (item) {
         del([basedir + '/dist/'], cb)
     });
 
+    var cssfiles = []
+    gulp.task(pname + ':filenames', function () {
+        return gulp.src(basedir + '/dist/css/**/*.css')
+            .pipe(through.obj(function(file,enc,cb){
+                cssfiles.push(file.relative);
+                cb();
+            }))
+    })
+
+    function spriterGroup (pathArr) {
+        cssfiles.forEach(function (item) {
+            var name = item.replace('.css', '');
+            gulp.src(basedir + '/dist/css/' + item)
+                .pipe(spriter({
+                    'spriteSheet': basedir + '/dist/img/spriteSheet_' + name + '.png',
+                    'pathToSpriteSheetFromCSS': '../img/spriteSheet_' + name + '.png'
+                }))
+                .pipe(minify())
+                .pipe(gulp.dest(basedir + '/dist/css/'))
+
+        })
+    }
+
+    gulp.task(pname + ':spirter', [pname + ':filenames'],function(){
+        spriterGroup(cssfiles);
+    })
 
     gulp.task(pname + ':dev', [pname + ':styles', pname + ':mincss', pname + ':rollup', pname + ':babel', pname + ':images', pname + ':html', pname + ':serve']);
 
-    gulp.task(pname + ':js-watch', [pname + ':rollup', pname + ':babel'], browser.reload);
+    gulp.task(pname + ':js-watch', [pname + ':rollup', pname + ':babel'], function () {
+        browser.reload();
+    });
     gulp.task(pname + ':sass-watch', [pname + ':styles']);
     gulp.task(pname + ':css-watch', [pname + ':mincss'], function () {
         browser.reload();

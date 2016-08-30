@@ -37,11 +37,12 @@ cnpm install
     |   |	|	|—— css	编译后的样式，也可直接在此目录下写css
     |   |	|	|—— sass    sass源代码
     |   |   |   |—— images  未压缩原图片
-    |   |	|	|—— js 编译后的js
+    |   |	|	|—— js 打包后的js
     |   |	|—— dist    发布目录
     |   |	|	|—— css	压缩后的样式
     |   |   |   |—— img 压缩后的图片
-    |   |	|	|—— js	压缩并合并后的js
+    |   |	|	|—— js	js目录
+    |   |   |   |   |—— bundle.js 压缩并编译后的js
 
 <a name="howtouse"></a>
 ## 如何使用
@@ -69,12 +70,22 @@ gulp demo:html // 发布html
 gulp demo:dev // 开启开发环境
 
 gulp demo:clean // 清除发布目录
+
+gulp demo:spirter // 自动生成雪碧图
 ```
+* 注意事项
+
+考虑到sass文件夹下可能会出现模块、公共目录，因此只会对```src/sass/```一级目录下的文件编译
+
+推荐在每次使用```project:spirter```命令前先使用```project:clean```命令清除```dist```目录，且只推荐在发布时使用```project:spirter```命令自动生成雪碧图
 
 <a name="mycode"></a>
 ## 我的源码
 
-+ 页面制作
++ 大作业源码
+    [ ] [网易教育产品部首页](http://xxthink.com/ne-mooc/app/edu/dist/index.html)
+
++ 练习源码
     - html
         * [x] [畅销图书列表](http://xxthink.com/ne-mooc/app/html/dist/ul.html)
         * [x] [邮寄信息表格](http://xxthink.com/ne-mooc/app/html/dist/table.html)
