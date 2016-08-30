@@ -4,7 +4,7 @@
 * @Last Modified by:   zhangxinliang
 * @Last Modified time: 2016-07-05 11:30:18
 */
-@import "./model/color.scss";
+@import "./module/color.scss";
 
 .test-box {
 	background-color: #FFF;
@@ -25,4 +25,16 @@ div {
 	display: flex;
 	align-items: center;
 	color: $gray;
+}
+.haha {
+	width: 200px;
+	height: 200px;
+	background: url(../img/shop-jd.png);
+	background-size: 50% 50%;
+}
+.haha-1 {
+	width: 300px;
+	height: 150px;
+	background: url(../img/cup.png);
+	background-size: 100% 100%;
 }

@@ -28,3 +28,15 @@ div {
       -ms-flex-align: center;
           align-items: center;
   color: #ccc; }
+
+.haha {
+  width: 200px;
+  height: 200px;
+  background: url(../img/shop-jd.png);
+  background-size: 50% 50%; }
+
+.haha-1 {
+  width: 300px;
+  height: 150px;
+  background: url(../img/cup.png);
+  background-size: 100% 100%; }

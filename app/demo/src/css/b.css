@@ -1,0 +1,14 @@
+.b-test {
+  background-color: #ccc; }
+
+.test {
+  width: 200px;
+  height: 200px;
+  background: url(../img/shop-tmall.png);
+  background-size: 50% 100%; }
+
+.test-1 {
+  width: 200px;
+  height: 200px;
+  background: url(../img/shop-jd.png);
+  background-size: 50% 100%; }
