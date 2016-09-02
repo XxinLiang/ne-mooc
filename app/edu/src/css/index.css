@@ -60,3 +60,9 @@ body, textarea, input, button, select, keygen, legend {
 
 body {
   background: #fff; }
+
+.m-page * {
+  display: inline-block;
+  width: 20px;
+  margin-left: 20px;
+  cursor: pointer; }

@@ -1,22 +1,13 @@
-var _ = {
-    exp(str = '') {
-        return new RegExp(str, 'g')
-    },
-    escapeHTML(html = '') {
-        return html.replace(/&(?!#?[0-9A-Za-z]+;)/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;')
-    },
-    warn(module = 'Global', msg = 'something happened:)') {
-        let error = module + ' Warn: '
-        console && console.warn(error + msg)
-        return error + msg
-    },
-    isType(type, obj) {
-    	return type === 'dom' ? obj instanceof HTMLElement : type === Object.prototype.toString.call(obj).slice(8, -1).toLowerCase()
-    }
-}
+/**
+* @Author: zhangxinliang
+* @Date:   2016-09-02 09:28:41
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-02 17:43:19
+*/
+
+'use strict'
+
+import _ from './util'
 
 function _warn(msg) {
     return _.warn('Page', msg)
@@ -129,35 +120,4 @@ class Page {
     }
 }
 
-new Page({
-    el: document.querySelector('.m-page'),
-    total: 10,
-    max: 8,
-    do(page) {
-        console.log(page)
-    }
-})
-
-// http({
-//     url: 'http://study.163.com/webDev/couresByCategory.htm',
-//     data: {
-//         pageNo: 1,
-//         psize: 6,
-//         type: 20
-//     },
-//     type: 'GET',
-//     dataType: 'json'
-// }).then((data) => {
-//     console.log(data)
-//     document.querySelector('.g-main').innerHTML = rtpl([
-//         '{{# data.list.forEach(function (item){ }}',
-//             '<div>',
-//                 '<span>{{item.name}}</span>',
-//                 '<img src="{{item.bigPhotoUrl}}">',
-//                 '<p>{{item.description}}</p>',
-//             '</div>',
-//         '{{# }) }}'
-//     ].join('')).render(data)
-// }).catch((err) => {
-//     console.log(err)
-// })
+export default Page
