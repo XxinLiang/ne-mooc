@@ -75,16 +75,19 @@ gulp demo:spirter // 自动生成雪碧图
 ```
 * 注意事项
 
-考虑到sass文件夹下可能会出现模块、公共目录，因此只会对```src/sass/```一级目录下的文件编译
+    考虑到sass文件夹下可能会出现模块、公共目录，因此只会对```src/sass/```一级目录下的文件编译
 
-推荐在每次使用```project:spirter```命令前先使用```project:clean```命令清除```dist```目录，且只推荐在发布时使用```project:spirter```命令自动生成雪碧图
+    推荐在每次使用```project:spirter```命令前先使用```project:clean```命令清除```dist```目录，且只推荐在发布时使用```project:spirter```命令自动生成雪碧图
 
 <a name="mycode"></a>
 ## 我的源码
 
 + 大作业源码
-    [ ] [网易教育产品部首页](http://xxthink.com/ne-mooc/app/edu/dist/index.html)
-
+    - [ ] [网易教育产品部首页](http://xxthink.com/ne-mooc/app/edu/dist/index.html)
+        * [x] [异步请求模块-http.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/http.js)
+        * [x] [模版渲染模块-render.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/render.js)
+        * [x] [分页模块-page.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/page.js)
+        * [ ] 存储模块-storage.js
 + 练习源码
     - html
         * [x] [畅销图书列表](http://xxthink.com/ne-mooc/app/html/dist/ul.html)

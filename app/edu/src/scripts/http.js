@@ -1,9 +1,10 @@
-/*
+/**
 * @Author: zhangxinliang
 * @Date:   2016-08-30 15:18:34
-* @Last Modified by:   zhangxinliang
-* @Last Modified time: 2016-08-30 17:38:55
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-02 09:38:49
 */
+
 'use strict'
 
 import _ from './util'
@@ -47,7 +48,7 @@ function http(options) {
             if (xhr.readyState == 4) {
                 if (xhr.status >= 200 && xhr.status <= 207 || xhr.status === 304) {
                     if ('JSONjson'.indexOf(options.dataType) !== -1) resolve(JSON.parse(xhr.responseText))
-                    resolve(xhr.responseText)	
+                    resolve(xhr.responseText)
                 } else {
                     reject(xhr.status)
                 }

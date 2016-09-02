@@ -1,1 +1,8 @@
 @import './base/_reset.scss';
+
+.m-page * {
+    display: inline-block;
+    width: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}

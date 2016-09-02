@@ -1,8 +1,8 @@
-/*
+/**
 * @Author: zhangxinliang
 * @Date:   2016-08-30 16:48:45
-* @Last Modified by:   zhangxinliang
-* @Last Modified time: 2016-08-30 18:34:29
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-02 09:38:44
 */
 
 'use strict'
@@ -33,7 +33,7 @@ class Tpl  {
             jsCloseEX = exp(config.close + '$')
 
         tpl = tpl.replace(/[\r\t\n]/g, ' ')
-            .replace(exp(config.open)+'#', config.open + '# ')
+            .replace(exp(config.open) + '#', config.open + '# ')
             .replace(exp(config.close + '}'), '} ' + config.close)
             .replace(/\\/g, '\\\\')
             .replace(/(?="|')/g, '\\')
@@ -43,16 +43,16 @@ class Tpl  {
             })
             .replace(_query(1), (str) => {
                 var start = '"+('
-                if (str.replace(/\s/g, '') === config.open+config.close) {
+                if (str.replace(/\s/g, '') === config.open + config.close) {
                     return ''
                 }
-                str = str.replace(exp(config.open+'|'+config.close), '')
+                str = str.replace(exp(config.open + '|' + config.close), '')
                 if (/^=/.test(str)) {
                     str = str.replace(/^=/, '')
                     start = '"+html('
                 }
                 return start + str.replace(/\\/g, '') + ')+"'
-            });
+            })
         tpl = '"use strict";var view = "' + tpl + '";return view;'
 
         try {
@@ -63,7 +63,7 @@ class Tpl  {
             return _.warn('Render', e)
         }
     }
-    
+
     render(data, cb = () => {}) {
         let tpl
         if (!data) return _.warn('Render', 'undefined data')
@@ -75,9 +75,9 @@ class Tpl  {
 }
 
 function rtpl(tpl) {
-    if (typeof tpl !== 'string') 
-        return _.warn('Render', 'template should be String');
-    return new Tpl(tpl);
+    if (typeof tpl !== 'string')
+        return _.warn('Render', 'template should be String')
+    return new Tpl(tpl)
 }
 
 export default rtpl
