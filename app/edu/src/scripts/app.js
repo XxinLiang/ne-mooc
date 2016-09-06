@@ -2,11 +2,12 @@
 * @Author: zhangxinliang
 * @Date:   2016-08-30 14:09:49
 * @Last modified by:   zhangxinliang
-* @Last modified time: 2016-09-02 16:56:50
+* @Last modified time: 2016-09-06 17:05:24
 */
 
 'use strict'
 
+import Promise from './promise'
 import rtpl from './render'
 import http from './http'
 import PageSwitch from './page'
@@ -30,7 +31,7 @@ new PageSwitch({
 //     type: 'GET',
 //     dataType: 'json'
 // }).then((data) => {
-//     console.log(data)
+//     console.dir(data)
 //     document.querySelector('.g-main').innerHTML = rtpl([
 //         '{{# data.list.forEach(function (item){ }}',
 //             '<div>',
@@ -40,6 +41,6 @@ new PageSwitch({
 //             '</div>',
 //         '{{# }) }}'
 //     ].join('')).render(data)
-// }).catch((err) => {
-//     console.log(err)
+// }, (err) => {
+//     console.dir(err)
 // })

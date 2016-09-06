@@ -50,7 +50,7 @@ class Page {
     init() {
         let tpl = this.tpl.prev + this.getCurrTpl()
         if (this.total > this.max) {
-            let len = this.max - (this.total - this.max) - 2//减去初始的第一页与省略页
+            let len = this.max - (this.total - this.max) - 1
             for (let i = 0; i < len; i ++) {
                 tpl += '<a class="m-page-links" href="javascript: void(0)" data-page="' + (i + 2) + '">' + (i + 2) + '</a>'
             }
@@ -148,7 +148,7 @@ new Page({
 //     type: 'GET',
 //     dataType: 'json'
 // }).then((data) => {
-//     console.log(data)
+//     console.dir(data)
 //     document.querySelector('.g-main').innerHTML = rtpl([
 //         '{{# data.list.forEach(function (item){ }}',
 //             '<div>',
@@ -158,6 +158,6 @@ new Page({
 //             '</div>',
 //         '{{# }) }}'
 //     ].join('')).render(data)
-// }).catch((err) => {
-//     console.log(err)
+// }, (err) => {
+//     console.dir(err)
 // })
