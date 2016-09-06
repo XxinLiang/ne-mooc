@@ -2,12 +2,13 @@
 * @Author: zhangxinliang
 * @Date:   2016-08-30 15:18:34
 * @Last modified by:   zhangxinliang
-* @Last modified time: 2016-09-02 09:38:49
+* @Last modified time: 2016-09-06 17:31:04
 */
 
 'use strict'
 
 import _ from './util'
+import Promise from './promise'
 
 function _parse(data) {
     if (typeof data === 'object') {
@@ -39,7 +40,7 @@ function http(options) {
         if ('GETget'.indexOf(options.type) !== -1) {
             xhr.open(options.type, options.url += data ? '?' + data : '', true)
             xhr.send(null)
-        } else if ('POSTpost'.indexOf(options.type) !== -1){
+        } else if ('POSTpost'.indexOf(options.type) !== -1) {
             xhr.open(options.type, options.url, true)
             xhr.send(data)
         }
@@ -48,7 +49,7 @@ function http(options) {
             if (xhr.readyState == 4) {
                 if (xhr.status >= 200 && xhr.status <= 207 || xhr.status === 304) {
                     if ('JSONjson'.indexOf(options.dataType) !== -1) resolve(JSON.parse(xhr.responseText))
-                    resolve(xhr.responseText)
+                    else resolve(xhr.responseText)
                 } else {
                     reject(xhr.status)
                 }

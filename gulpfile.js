@@ -1,11 +1,11 @@
 /*
 * @Author: zhangxinliang
 * @Date:   2016-07-04 14:13:20
-* @Last Modified by:   zhangxinliang
-* @Last Modified time: 2016-08-30 15:29:34
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-06 15:09:38
 */
 
-'use strict';
+'use strict'
 
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
@@ -27,7 +27,7 @@ var gulp = require('gulp'),
     spriter = require('gulp-css-spriter'),
     through = require('through2')
 
-var projects = require('./project.config.js');
+var projects = require('./project.config.js')
 
 projects.forEach(function (item) {
     var pname = item.projectdir,
@@ -35,7 +35,7 @@ projects.forEach(function (item) {
         version = item.version,
         basedir = 'app/' + pname,
         browser = browserSync.create(),
-        reload = browser.reload;
+        reload = browser.reload
 
     //styles-scss to css
     gulp.task(pname + ':styles', function () {
@@ -44,16 +44,16 @@ projects.forEach(function (item) {
             .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
             .pipe(autoprefixer('last 4 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
             .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-            .pipe(gulp.dest(basedir + '/src/css'));
-    });
+            .pipe(gulp.dest(basedir + '/src/css'))
+    })
 
     //mincss-css to min.css
     gulp.task(pname + ':mincss', function () {
         return gulp.src(basedir + '/src/css/**/*.css')
             .pipe(cssnano())
             .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-            .pipe(gulp.dest(basedir + '/dist/css'));
-    });
+            .pipe(gulp.dest(basedir + '/dist/css'))
+    })
 
     //scripts-es6 to es5
     gulp.task(pname + ':babel', function () {
@@ -61,11 +61,10 @@ projects.forEach(function (item) {
             .pipe(babel({
                 presets: ['es2015']
             }))
-            .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
             .pipe(uglify())
             .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-            .pipe(gulp.dest(basedir + '/dist/js/'));
-    });
+            .pipe(gulp.dest(basedir + '/dist/js/'))
+    })
 
     gulp.task(pname + ':rollup', function () {
         return rollup({
@@ -90,43 +89,43 @@ projects.forEach(function (item) {
                     moment: 'moment'
                 },
                 dest: basedir + "/src/js/bundle.js"
-            });
+            })
         }).catch(function (err) {
-            console.log(err);
-        });
-    });
+            console.log(err)
+        })
+    })
 
     //images-images to min img
     gulp.task(pname + ':images', function() {
         return gulp.src(basedir + '/src/images/**/*')
             .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
             .pipe(plumber({errorHandler: notify.onError("Error: <%= error.message %>")}))
-            .pipe(gulp.dest(basedir + '/dist/img'));
-    });
+            .pipe(gulp.dest(basedir + '/dist/img'))
+    })
 
     //html-src html to html
     gulp.task(pname + ':html', function () {
         return gulp.src(basedir + '/src/html/**/*.html')
-            .pipe(gulp.dest(basedir + '/dist/'));
-    });
+            .pipe(gulp.dest(basedir + '/dist/'))
+    })
 
     // clean-delete dist
     gulp.task(pname + ':clean', function(cb) {
         del([basedir + '/dist/'], cb)
-    });
+    })
 
     var cssfiles = []
     gulp.task(pname + ':filenames', function () {
         return gulp.src(basedir + '/dist/css/**/*.css')
             .pipe(through.obj(function(file,enc,cb){
-                cssfiles.push(file.relative);
-                cb();
+                cssfiles.push(file.relative)
+                cb()
             }))
     })
 
     function spriterGroup (pathArr) {
         cssfiles.forEach(function (item) {
-            var name = item.replace('.css', '');
+            var name = item.replace('.css', '')
             gulp.src(basedir + '/dist/css/' + item)
                 .pipe(spriter({
                     'spriteSheet': basedir + '/dist/img/spriteSheet_' + name + '.png',
@@ -139,22 +138,22 @@ projects.forEach(function (item) {
     }
 
     gulp.task(pname + ':spirter', [pname + ':filenames'],function(){
-        spriterGroup(cssfiles);
+        spriterGroup(cssfiles)
     })
 
-    gulp.task(pname + ':dev', [pname + ':styles', pname + ':mincss', pname + ':rollup', pname + ':babel', pname + ':images', pname + ':html', pname + ':serve']);
+    gulp.task(pname + ':dev', [pname + ':styles', pname + ':mincss', pname + ':rollup', pname + ':babel', pname + ':images', pname + ':html', pname + ':serve'])
 
     gulp.task(pname + ':js-watch', [pname + ':rollup', pname + ':babel'], function () {
-        browser.reload();
-    });
-    gulp.task(pname + ':sass-watch', [pname + ':styles']);
+        browser.reload()
+    })
+    gulp.task(pname + ':sass-watch', [pname + ':styles'])
     gulp.task(pname + ':css-watch', [pname + ':mincss'], function () {
-        browser.reload();
-    });
-    gulp.task(pname + ':img-watch', [pname + ':images'], browser.reload);
+        browser.reload()
+    })
+    gulp.task(pname + ':img-watch', [pname + ':images'], browser.reload)
     gulp.task(pname + ':html-watch', [pname + ':html'], function () {
-        browser.reload();
-    });
+        browser.reload()
+    })
 
     //serve-start browsersync
     gulp.task(pname + ':serve', [], function () {
@@ -163,12 +162,12 @@ projects.forEach(function (item) {
                 baseDir: basedir + '/dist/'
             },
             port: port
-        });
+        })
 
-        gulp.watch(basedir + '/src/sass/**/*.scss', [pname + ':sass-watch']);
-        gulp.watch(basedir + '/src/css/**/*.css', [pname + ':css-watch']);
-        gulp.watch(basedir + '/src/scripts/**/*.js', [pname + ':js-watch']);
-        gulp.watch(basedir + '/src/images/**/*', [pname + ':img-watch']);
-        gulp.watch(basedir + '/src/html/**/*.html', [pname + ':html-watch']);
-    });
-});
+        gulp.watch(basedir + '/src/sass/**/*.scss', [pname + ':sass-watch'])
+        gulp.watch(basedir + '/src/css/**/*.css', [pname + ':css-watch'])
+        gulp.watch(basedir + '/src/scripts/**/*.js', [pname + ':js-watch'])
+        gulp.watch(basedir + '/src/images/**/*', [pname + ':img-watch'])
+        gulp.watch(basedir + '/src/html/**/*.html', [pname + ':html-watch'])
+    })
+})

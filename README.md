@@ -87,7 +87,7 @@ gulp demo:spirter // 自动生成雪碧图
         * [x] [异步请求模块-http.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/http.js)
         * [x] [模版渲染模块-render.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/render.js)
         * [x] [分页模块-page.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/page.js)
-        * [ ] 存储模块-storage.js
+        * [x] [Promise模块-promise.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/promise.js)
 + 练习源码
     - html
         * [x] [畅销图书列表](http://xxthink.com/ne-mooc/app/html/dist/ul.html)

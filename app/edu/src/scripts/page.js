@@ -2,7 +2,7 @@
 * @Author: zhangxinliang
 * @Date:   2016-09-02 09:28:41
 * @Last modified by:   zhangxinliang
-* @Last modified time: 2016-09-02 17:43:19
+* @Last modified time: 2016-09-06 17:10:13
 */
 
 'use strict'
@@ -41,7 +41,7 @@ class Page {
     init() {
         let tpl = this.tpl.prev + this.getCurrTpl()
         if (this.total > this.max) {
-            let len = this.max - (this.total - this.max) - 2//减去初始的第一页与省略页
+            let len = this.max - (this.total - this.max) - 1
             for (let i = 0; i < len; i ++) {
                 tpl += '<a class="m-page-links" href="javascript: void(0)" data-page="' + (i + 2) + '">' + (i + 2) + '</a>'
             }
