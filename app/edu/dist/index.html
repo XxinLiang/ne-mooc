@@ -11,11 +11,26 @@
 	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
+	<script type="text/javascript">
+		var isIE8Plus = function () {
+			var uA = navigator.userAgent.toLowerCase(),
+	            isIE = uA.indexOf('msie') > -1
+	        if (isIE) return parseInt(uA.match(/msie ([\d.]+)/)[1]) > 8
+	        else return true
+		}()
+		if (isIE8Plus) {
+			var script = document.createElement('script')
+			script.type = 'text/javascript'
+			script.src = 'js/bundle.js'
+			document.body.appendChild(script)
+		} else {
+			alert('这浏览器太垃圾了，快换快换')
+		}
+	</script>
 	<div class="g-bd">
 		<div class="g-main"></div>
 		<div class="m-page">
 		</div>
 	</div>
-	<script type="text/javascript" src="js/bundle.js"></script>
 </body>
 </html>
