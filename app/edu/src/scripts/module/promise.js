@@ -2,19 +2,18 @@
 * @Author: zhangxinliang
 * @Date:   2016-09-06 15:28:10
 * @Last modified by:   zhangxinliang
-* @Last modified time: 2016-09-06 16:56:42
+* @Last modified time: 2016-09-09 14:18:20
 */
-
-'use strict'
 
 import _ from './util'
 
 class Promise {
     constructor(fn) {
-        let state = 'PENDING',
+        let state = 'PENDING',//状态 只存在PENDING、FULFILLED及REJECTED三种状态
             value = null,
-            deferreds = []
+            deferreds = []//异步队列
 
+        //Promise.then方法，返回一个Promise实例
         this.then = function (onFulfilled = null, onRejected = null) {
             return new Promise((resolve, reject) => {
                 handle({
@@ -26,6 +25,7 @@ class Promise {
             })
         }
 
+        //handle函数-确保onFulfilled与onRejected只会触发其中一个
         function handle(deferred) {
             if (state === 'PENDING') {
                 deferreds.push(deferred)
@@ -49,6 +49,7 @@ class Promise {
             }
         }
 
+        //resolve函数-状态PENDING转变为FULFILLED
         function resolve(newValue) {
             if (newValue && (_.isType('object', newValue) || _.isType('function', newValue))) {
                 let then = newValue.then
@@ -62,12 +63,14 @@ class Promise {
             finale()
         }
 
+        //reject函数-状态PENDING转变为REJECTED
         function reject(reason) {
             state = 'REJECTED'
             value = reason
             finale()
         }
 
+        //finale函数-确保总是保持异步
         function finale() {
             setTimeout(() => {
                 deferreds.forEach((deferred) => {

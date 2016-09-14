@@ -16,6 +16,23 @@
 		<div class="m-page">
 		</div>
 	</div>
-	<script type="text/javascript" src="js/bundle.js"></script>
+	<script class="j-useragent" type="text/javascript">
+		var isIE8Plus = function () {
+			var uA = navigator.userAgent.toLowerCase(),
+				isIE = uA.indexOf('msie') > -1
+			if (isIE) return parseInt(uA.match(/msie ([\d.]+)/)[1]) > 8
+			else return true
+		}()
+		if (isIE8Plus) {
+			var script = document.createElement('script'),
+				body = document.body
+			script.type = 'text/javascript'
+			script.src = 'js/bundle.js'
+			body.appendChild(script)
+			body.removeChild(document.querySelector('.j-useragent'))
+		} else {
+			alert('这浏览器太垃圾了，快换快换')
+		}
+	</script>
 </body>
 </html>

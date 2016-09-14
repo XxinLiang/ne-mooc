@@ -1,3 +1,10 @@
+/**
+* @Author: zhangxinliang
+* @Date:   2016-08-30 15:38:33
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-09 14:18:41
+*/
+
 var _ = {
     exp(str = '') {
         return new RegExp(str, 'g')
@@ -18,6 +25,39 @@ var _ = {
     }
 }
 
+/**
+* @Author: zhangxinliang
+* @Date:   2016-09-06 15:28:10
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-09 14:18:20
+*/
+
+/**
+* @Author: zhangxinliang
+* @Date:   2016-08-30 16:48:45
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-09 14:18:34
+*/
+
+/**
+* @Author: zhangxinliang
+* @Date:   2016-08-30 15:18:34
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-09 14:18:01
+*/
+
+/**
+* @Author: zhangxinliang
+* @Date:   2016-09-02 09:28:41
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-09 14:18:09
+*/
+
+/**
+ * _warn _.warn私有化
+ * @param  {String} msg 警告信息
+ * @return {String}     警告信息
+ */
 function _warn(msg) {
     return _.warn('Page', msg)
 }
@@ -26,12 +66,12 @@ class Page {
     constructor(options) {
         if (!(options.el && _.isType('dom', options.el))) return _warn( 'arguments.el should be a DOM Element')
         if (!(options.total && _.isType('number', options.total))) return _warn('arguments.total should be a Number')
-        if (!(options.do && _.isType('function', options.do))) return _warn('arguments.do should be a Function')
+        if (!(options.jump && _.isType('function', options.jump))) return _warn('arguments.jump should be a Function')
 
         this.el = options.el
         this.total = options.total
         this.max = 8
-        this.do = options.do
+        this.jump = options.jump
 
         this.page = 1
         this.tpl = {
@@ -43,10 +83,12 @@ class Page {
         this.bind()
     }
 
+    //获取当前页模版
     getCurrTpl () {
         return '<span class="m-page-curr" data-page="curr">' + this.page + '</span>'
     }
 
+    //初始化分页
     init() {
         let tpl = this.tpl.prev + this.getCurrTpl()
         if (this.total > this.max) {
@@ -64,6 +106,7 @@ class Page {
         this.el.innerHTML = tpl
     }
 
+    //事件委托
     bind() {
         this.el.addEventListener('click', (event) => {
             let e = event || window.event,
@@ -84,6 +127,7 @@ class Page {
         })
     }
 
+    //核心-分页处理函数
     pageHandel (page) {
         this.page = page
         let max = this.max,
@@ -96,7 +140,6 @@ class Page {
         const MAX_STEP = max - 1,//减去选中页
             MAX_STEP_LEFT = page - 1,
             MAX_STEP_RIGHT = total - page
-
 
         tplArr.push(this.getCurrTpl())
         sortArr.push('curr')
@@ -126,38 +169,37 @@ class Page {
         }
 
         this.el.innerHTML = this.tpl.prev + tplArr.join('') + this.tpl.next
+        this.jump(page)
     }
 }
 
-new Page({
-    el: document.querySelector('.m-page'),
-    total: 10,
-    max: 8,
-    do(page) {
-        console.log(page)
-    }
-})
+/**
+* @Author: zhangxinliang
+* @Date:   2016-09-09 13:44:26
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-09 14:24:20
+*/
 
-// http({
-//     url: 'http://study.163.com/webDev/couresByCategory.htm',
-//     data: {
-//         pageNo: 1,
-//         psize: 6,
-//         type: 20
-//     },
-//     type: 'GET',
-//     dataType: 'json'
-// }).then((data) => {
-//     console.dir(data)
-//     document.querySelector('.g-main').innerHTML = rtpl([
-//         '{{# data.list.forEach(function (item){ }}',
-//             '<div>',
-//                 '<span>{{item.name}}</span>',
-//                 '<img src="{{item.bigPhotoUrl}}">',
-//                 '<p>{{item.description}}</p>',
-//             '</div>',
-//         '{{# }) }}'
-//     ].join('')).render(data)
-// }, (err) => {
-//     console.dir(err)
-// })
+var pageSwitch = {
+    init() {
+        // _render(1)
+        new Page({
+            el: document.querySelector('.m-page'),
+            total: 10,
+            max: 8,
+            jump(page) {
+                // _render(page)
+            }
+        })
+
+    }
+}
+
+/**
+* @Author: zhangxinliang
+* @Date:   2016-08-30 14:09:49
+* @Last modified by:   zhangxinliang
+* @Last modified time: 2016-09-09 14:16:30
+*/
+
+pageSwitch.init()

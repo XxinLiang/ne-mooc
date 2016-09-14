@@ -2,14 +2,17 @@
 * @Author: zhangxinliang
 * @Date:   2016-08-30 15:18:34
 * @Last modified by:   zhangxinliang
-* @Last modified time: 2016-09-06 17:31:04
+* @Last modified time: 2016-09-09 14:18:01
 */
-
-'use strict'
 
 import _ from './util'
 import Promise from './promise'
 
+/**
+ * _parse 解析data参数
+ * @param  {Object} data 请求参数对象
+ * @return {String}      解析后的字符串
+ */
 function _parse(data) {
     if (typeof data === 'object') {
         let result = ''
@@ -21,6 +24,7 @@ function _parse(data) {
         _.warn('HTTP', 'data must be an Object')
     }
 }
+
 /**
  * http
  * @param  {Object} options 参数options包含一个必选属性与三个可选属性

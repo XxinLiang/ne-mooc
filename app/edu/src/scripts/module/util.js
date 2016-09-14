@@ -2,10 +2,8 @@
 * @Author: zhangxinliang
 * @Date:   2016-08-30 15:38:33
 * @Last modified by:   zhangxinliang
-* @Last modified time: 2016-09-02 10:43:33
+* @Last modified time: 2016-09-09 14:18:41
 */
-
-'use strict'
 
 export default {
     exp(str = '') {
