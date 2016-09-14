@@ -84,10 +84,10 @@ gulp demo:spirter // 自动生成雪碧图
 
 + 大作业源码
     - [ ] [网易教育产品部首页](http://xxthink.com/ne-mooc/app/edu/dist/index.html)
-        * [x] [异步请求模块-http.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/http.js)
-        * [x] [模版渲染模块-render.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/render.js)
-        * [x] [分页模块-page.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/page.js)
-        * [x] [Promise模块-promise.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/promise.js)
+        * [x] [异步请求模块-http.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/module/http.js)
+        * [x] [模版渲染模块-render.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/module/render.js)
+        * [x] [分页模块-page.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/module/page.js)
+        * [x] [Promise模块-promise.js](https://github.com/XxinLiang/ne-mooc/blob/master/app/edu/src/scripts/module/promise.js)
 + 练习源码
     - html
         * [x] [畅销图书列表](http://xxthink.com/ne-mooc/app/html/dist/ul.html)
