@@ -1,68 +1,231 @@
-html, body, h1, h2, h3, h4, h5, h6, div, dl, dt, dd, ul, ol, li, p, blockquote, pre, hr, figure, table, caption, th, td, form, fieldset, legend, input, button, textarea, menu {
+blockquote,
+body,
+button,
+caption,
+dd,
+div,
+dl,
+dt,
+fieldset,
+figure,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+html,
+input,
+legend,
+li,
+menu,
+ol,
+p,
+pre,
+table,
+td,
+textarea,
+th,
+ul {
   margin: 0;
   padding: 0; }
 
-header, footer, section, article, aside, nav, hgroup, address, figure, figcaption, menu, details {
+address,
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block; }
 
 table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-caption, th {
+caption,
+th {
   text-align: left;
   font-weight: normal; }
 
-html, body, fieldset, img, iframe, abbr {
+abbr,
+body,
+fieldset,
+html,
+iframe,
+img {
   border: 0; }
 
-i, cite, em, var, address, dfn {
+address,
+cite,
+dfn,
+em,
+i,
+var {
   font-style: normal; }
 
-[hidefocus], summary {
+[hidefocus],
+summary {
   outline: 0; }
 
 li {
   list-style: none; }
 
-h1, h2, h3, h4, h5, h6, small {
-  font-size: 100%; }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+small {
+  font-size: 100%;
+  line-height: 1em; }
 
-sup, sub {
+sub,
+sup {
   font-size: 83%; }
 
-pre, code, kbd, samp {
+code,
+kbd,
+pre,
+samp {
   font-family: inherit; }
 
-q:before, q:after {
+q:after,
+q:before {
   content: none; }
 
 textarea {
   overflow: auto;
   resize: none; }
 
-label, summary {
+label,
+summary {
   cursor: default; }
 
-a, button {
+a,
+button {
   cursor: pointer; }
 
-h1, h2, h3, h4, h5, h6, em, strong, b {
+button {
+  display: inline-block;
+  border: none; }
+
+b,
+em,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
   font-weight: bold; }
 
-del, ins, u, s, a, a:hover {
+a,
+a:hover,
+del,
+ins,
+s,
+u {
   text-decoration: none; }
 
-body, textarea, input, button, select, keygen, legend {
-  font: 12px/normal arial,\5b8b\4f53;
+body,
+button,
+input,
+keygen,
+legend,
+select,
+textarea {
+  font: 14px/normal "Microsoft YaHei","Arial";
   color: #333;
   outline: 0; }
 
 body {
   background: #fff; }
 
-.m-page * {
-  display: inline-block;
-  width: 20px;
-  margin-left: 20px;
-  cursor: pointer; }
+.g-msg {
+  padding-top: 12px;
+  padding-bottom: 6px;
+  background-color: #f3f3f3; }
+
+.g-hd {
+  padding-top: 30px;
+  padding-bottom: 37px; }
+
+.g-box {
+  width: 1205px;
+  margin-left: auto;
+  margin-right: auto; }
+  @media screen and (max-width: 1205px) {
+    .g-box {
+      width: 957px; } }
+
+.f-fix:before, .f-fix:after {
+  content: "";
+  display: table; }
+
+.f-fix.after {
+  clear: both; }
+
+.z-hide {
+  display: none; }
+
+.m-msg {
+  font-size: 0px; }
+  .m-msg * {
+    font-size: 12px; }
+  .m-msg > a {
+    color: #21a557;
+    margin-left: 10px; }
+  .m-msg .close {
+    float: right;
+    cursor: pointer; }
+    .m-msg .close .icon {
+      display: inline-block;
+      width: 9px;
+      height: 9px;
+      background-image: url("../img/icon_close.png");
+      margin-right: 6px; }
+
+.m-logo {
+  font-size: 0; }
+  .m-logo img {
+    padding-top: 3px;
+    padding-right: 13px;
+    margin-right: 10px;
+    border-right: 1px solid #39a030; }
+  .m-logo h1,
+  .m-logo h2 {
+    display: inline-block;
+    vertical-align: top;
+    font-size: 22px;
+    font-weight: normal; }
+  .m-logo h2 {
+    color: #39a030; }
+
+.m-attention {
+  font-size: 0; }
+  .m-attention .m-logo {
+    display: inline-block;
+    margin-right: 34px; }
+  .m-attention > button {
+    width: 54px;
+    height: 21px;
+    vertical-align: top;
+    color: #fff;
+    background-color: #21a557;
+    border-radius: 2px; }
+  .m-attention .icon {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-image: url("../img/icon_add.png");
+    margin-right: 6px; }

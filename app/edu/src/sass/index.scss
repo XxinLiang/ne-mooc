@@ -1,8 +1,110 @@
 @import './base/_reset.scss';
 
-.m-page * {
+$green_21: #21a557;
+$green_39: #39a030;
+
+@mixin icon ($w: 10px, $h: 10px, $url: '') {
     display: inline-block;
-    width: 20px;
-    margin-left: 20px;
-    cursor: pointer;
+    width: $w;
+    height: $h;
+    background-image: url($url);
+}
+
+.g-msg {
+    padding-top: 12px;
+    padding-bottom: 6px;
+    background-color: #f3f3f3;
+}
+.g-hd {
+    padding-top: 30px;
+    padding-bottom: 37px;
+}
+.g-bd {
+
+}
+.g-ft {
+
+}
+.g-box {
+    width: 1205px;
+    margin-left: auto;
+    margin-right: auto;
+    @media screen and (max-width: 1205px) {
+      width: 957px;
+    }
+}
+
+.f-fix {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &.after {
+        clear: both;
+    }
+}
+
+.z-hide {
+    display: none;
+}
+
+.m-msg {
+    //清除行元素换行符间距
+    font-size: 0px;
+    * {
+        font-size: 12px;
+    }
+    > a {
+        color: $green_21;
+        margin-left: 10px;
+    }
+    .close {
+        float: right;
+        cursor: pointer;
+        .icon {
+            @include icon(9px, 9px, '../img/icon_close.png');
+            margin-right: 6px;
+        }
+    }
+}
+
+.m-logo {
+    font-size: 0;
+    img {
+        padding-top: 3px;
+        padding-right: 13px;
+        margin-right: 10px;
+        border-right: 1px solid $green_39;
+    }
+    h1,
+    h2 {
+        display: inline-block;
+        vertical-align: top;
+        font-size: 22px;
+        font-weight: normal;
+    }
+    h2 {
+        color: $green_39;
+    }
+}
+
+.m-attention {
+    font-size: 0;
+    .m-logo {
+        display: inline-block;
+        margin-right: 34px;
+    }
+    > button {
+        width: 54px;
+        height: 21px;
+        vertical-align: top;
+        color: #fff;
+        background-color: $green_21;
+        border-radius: 2px;
+    }
+    .icon {
+        @include icon(8px, 8px, '../img/icon_add.png');
+        margin-right: 6px;
+    }
 }
