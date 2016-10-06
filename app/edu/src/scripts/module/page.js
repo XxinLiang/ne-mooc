@@ -29,9 +29,9 @@ class Page {
 
         this.page = 1
         this.tpl = {
-            prev: '<a class="m-page-btns" href="javascript: void(0)" data-page="prev">&lt;</a>',
-            next: '<a class="m-page-btns" href="javascript: void(0)" data-page="next">&gt;</a>',
-            omit: '<span class="m-page-omit" data-page="omit">...</span>'
+            prev: '<a class="btns" href="javascript: void(0)" data-page="prev">&lt;</a>',
+            next: '<a class="btns" href="javascript: void(0)" data-page="next">&gt;</a>',
+            omit: '<span class="omit" data-page="omit">...</span>'
         }
         this.init()
         this.bind()
@@ -39,21 +39,21 @@ class Page {
 
     //获取当前页模版
     getCurrTpl () {
-        return '<span class="m-page-curr" data-page="curr">' + this.page + '</span>'
+        return '<span class="curr" data-page="curr">' + this.page + '</span>'
     }
 
     //初始化分页
     init() {
         let tpl = this.tpl.prev + this.getCurrTpl()
         if (this.total > this.max) {
-            let len = this.max - (this.total - this.max) - 1
+            let len = this.max - 3
             for (let i = 0; i < len; i ++) {
-                tpl += '<a class="m-page-links" href="javascript: void(0)" data-page="' + (i + 2) + '">' + (i + 2) + '</a>'
+                tpl += '<a class="links" href="javascript: void(0)" data-page="' + (i + 2) + '">' + (i + 2) + '</a>'
             }
-            tpl += this.tpl.omit + '<a class="m-page-links" href="javascript: void(0)" data-page="' + this.total + '">' + this.total + '</a>' + this.tpl.next
+            tpl += this.tpl.omit + '<a class="links" href="javascript: void(0)" data-page="' + this.total + '">' + this.total + '</a>' + this.tpl.next
         } else {
             for (let i = 0, len = this.total; i < len - 1; i ++) {
-                tpl += '<a class="m-page-links" href="javascript: void(0)" data-page="' + (i + 2) + '">' + (i + 2) + '</a>'
+                tpl += '<a class="links" href="javascript: void(0)" data-page="' + (i + 2) + '">' + (i + 2) + '</a>'
             }
             tpl += this.tpl.next
         }
@@ -102,24 +102,24 @@ class Page {
             if (step < MAX_STEP && ++stepLeft <= MAX_STEP_LEFT) {
                 let thisPage = page - stepLeft
                 step++
-                tplArr.unshift('<a class="m-page-links" href="javascript: void(0)" data-page="' + thisPage + '">' + thisPage + '</a>')
+                tplArr.unshift('<a class="links" href="javascript: void(0)" data-page="' + thisPage + '">' + thisPage + '</a>')
                 sortArr.unshift(thisPage)
             }
             if (step < MAX_STEP && ++stepRight <= MAX_STEP_RIGHT) {
                 let thisPage = page + stepRight
                 step++
-                tplArr.push('<a class="m-page-links" href="javascript: void(0)" data-page="' + thisPage + '">' + thisPage + '</a>')
+                tplArr.push('<a class="links" href="javascript: void(0)" data-page="' + thisPage + '">' + thisPage + '</a>')
                 sortArr.push(thisPage)
             }
         }
 
         if (sortArr[1] !== 2 && sortArr[1] !== 'curr') {
-            tplArr[0] = '<a class="m-page-links" href="javascript: void(0)" data-page="1">1</a>'
+            tplArr[0] = '<a class="links" href="javascript: void(0)" data-page="1">1</a>'
             tplArr[1] = this.tpl.omit
         }
         if (sortArr[max - 1] !== total && sortArr[max - 1] !== 'curr') {
             tplArr[max - 2] = this.tpl.omit
-            tplArr[max - 1] = '<a class="m-page-links" href="javascript: void(0)" data-page="' + total + '">' + total + '</a>'
+            tplArr[max - 1] = '<a class="links" href="javascript: void(0)" data-page="' + total + '">' + total + '</a>'
         }
 
         this.el.innerHTML = this.tpl.prev + tplArr.join('') + this.tpl.next

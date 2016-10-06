@@ -1,0 +1,28 @@
+$green_21: #21a557;
+$green_39: #39a030;
+$gray_ef: #efefef;
+$gray_f8: #f8f8f8;
+
+@mixin clean-fix {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin icon ($w: 10px, $h: 10px, $url: '') {
+    display: inline-block;
+    width: $w;
+    height: $h;
+    background-image: url($url);
+}
+
+@mixin ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
