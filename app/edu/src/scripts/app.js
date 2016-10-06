@@ -5,6 +5,16 @@
 * @Last modified time: 2016-09-09 14:16:30
 */
 
-import pageSwitch from './component/page-switch'
+import storage from './component/storage'
+import carousel from './component/carousel'
+import course from './component/course'
+import hot from './component/hot'
+import login from './component/login'
+import video from './component/video'
 
-pageSwitch.init()
+storage.init()
+carousel.init()
+course.init()
+hot.init()
+login.init()
+video.init()
